@@ -1,9 +1,7 @@
 import React from 'react';
 import { 
-    List,
     Datagrid,
     TextField,
-    useGetList,
 } from 'react-admin';
 import { 
     Box, 
@@ -21,16 +19,13 @@ import {
 
 const CustomDatagrid = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [selectedId, setSelectedId] = React.useState(null);
 
-    const handleClick = (event, id) => {
+    const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        setSelectedId(id);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
-        setSelectedId(null);
     };
 
     // Mock data for products
@@ -85,7 +80,7 @@ const CustomDatagrid = () => {
                     render={(record) => (
                         <IconButton
                             size="small"
-                            onClick={(e) => handleClick(e, record.id)}
+                            onClick={handleClick}
                         >
                             <MoreIcon fontSize="small" />
                         </IconButton>

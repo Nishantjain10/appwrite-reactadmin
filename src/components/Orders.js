@@ -3,7 +3,6 @@ import {
     List,
     Datagrid,
     TextField,
-    useGetList,
 } from 'react-admin';
 import { 
     Box, 
@@ -88,16 +87,9 @@ const OrdersStats = () => {
 
 const CustomDatagrid = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [selectedId, setSelectedId] = React.useState(null);
 
     const handleClick = (event, id) => {
         setAnchorEl(event.currentTarget);
-        setSelectedId(id);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-        setSelectedId(null);
     };
 
     return (
@@ -167,7 +159,7 @@ const CustomDatagrid = () => {
             <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
+                onClose={() => setAnchorEl(null)}
                 PaperProps={{
                     sx: {
                         boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.05)',
@@ -175,15 +167,14 @@ const CustomDatagrid = () => {
                     }
                 }}
             >
-                <MenuItem onClick={handleClose}>Edit</MenuItem>
-                <MenuItem onClick={handleClose} sx={{ color: '#EF4444' }}>Delete</MenuItem>
+                <MenuItem>Edit</MenuItem>
+                <MenuItem sx={{ color: '#EF4444' }}>Delete</MenuItem>
             </Menu>
         </>
     );
 };
 
 const Orders = () => {
-    // Mock data for the orders
     const mockOrders = [
         { id: '6823419057', date: 'October 29, 2024 at 1:46 pm', customerId: '6823419057', totalPrice: 150, status: 'To be shipped' },
         { id: '9576384210', date: 'October 29, 2024 at 1:46 pm', customerId: '9576384210', totalPrice: 33, status: 'To be shipped' },
@@ -233,6 +224,7 @@ const Orders = () => {
 
             <List
                 resource="orders"
+                data={mockOrders}
                 component="div"
                 actions={null}
                 sx={{

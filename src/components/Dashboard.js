@@ -3,7 +3,6 @@ import {
     List,
     Datagrid,
     TextField,
-    useGetList,
 } from 'react-admin';
 import { 
     Box, 
@@ -88,16 +87,13 @@ const UsersStats = () => {
 
 const CustomDatagrid = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [selectedId, setSelectedId] = React.useState(null);
 
-    const handleClick = (event, id) => {
+    const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        setSelectedId(id);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
-        setSelectedId(null);
     };
 
     return (
@@ -135,7 +131,7 @@ const CustomDatagrid = () => {
                     render={(record) => (
                         <IconButton
                             size="small"
-                            onClick={(e) => handleClick(e, record.id)}
+                            onClick={(e) => handleClick(e)}
                         >
                             <MoreIcon fontSize="small" />
                         </IconButton>
