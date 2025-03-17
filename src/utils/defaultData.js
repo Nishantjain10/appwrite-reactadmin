@@ -4,13 +4,6 @@ const generateRandomDate = (start, end) => {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toISOString();
 };
 
-const generateRandomPrice = () => {
-    return (Math.random() * (999 - 50) + 50).toFixed(2);
-};
-
-const deliveryStatuses = ['Pending', 'Shipped', 'Delivered', 'Cancelled'];
-const customerTypes = ['Regular', 'VIP', 'New'];
-
 export const createDefaultDocuments = async (databases, userId) => {
     try {
         // Check if required environment variables are present
