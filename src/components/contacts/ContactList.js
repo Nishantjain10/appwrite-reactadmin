@@ -14,7 +14,6 @@ import {
     TopToolbar,
     Empty,
 } from 'react-admin';
-import { Card, CardContent, Box } from '@mui/material';
 import { DuplicateButton } from '../common/DuplicateButton';
 import { DuplicateCollectionButton } from '../common/DuplicateCollectionButton';
 
