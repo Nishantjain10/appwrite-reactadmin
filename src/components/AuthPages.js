@@ -4,16 +4,12 @@ import { Client, Account, ID, Databases } from 'appwrite';
 import { createDefaultDocuments } from '../utils/defaultData';
 import { 
     Box, 
-    Card,
     TextField, 
     Button, 
     Typography, 
-    Container,
     CircularProgress,
     InputAdornment,
     IconButton,
-    AppBar,
-    Toolbar,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
