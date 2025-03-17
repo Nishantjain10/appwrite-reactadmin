@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, useLogout, useGetIdentity } from 'react-admin';
+import { useLogout, useGetIdentity } from 'react-admin';
 import { 
     Box, 
     Typography, 
@@ -13,13 +13,6 @@ import {
     Inventory as ProductsIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Client, Avatars } from "appwrite";
-
-const client = new Client()
-    .setEndpoint(process.env.REACT_APP_APPWRITE_ENDPOINT)
-    .setProject(process.env.REACT_APP_APPWRITE_PROJECT_ID);
-
-const avatars = new Avatars(client);
 
 const CustomAppBar = () => {
     const logout = useLogout();
@@ -102,7 +95,7 @@ const CustomAppBar = () => {
                                 color: '#FFFFFF',
                             }}
                         >
-                            {identity.fullName?.charAt(0).toUpperCase() || identity.email?.charAt(0).toUpperCase()}
+                            {identity.fullName?.charAt(0).toUpperCase()}
                         </Avatar>
                     </>
                 )}
