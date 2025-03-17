@@ -1,34 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Client, Account, Databases, ID, Permission, Role, Query } from 'appwrite';
 import {
-  appWriteDataProvider,
-  appWriteAuthProvider,
-} from 'ra-appwrite';
-import {
   Admin,
-  EditGuesser,
-  ListGuesser,
   Resource,
-  Layout,
-  Loading,
+    Loading,
 } from "react-admin";
 import { MyAuthPage } from './components/AuthPages';
 import { CustomLayout } from './components/CustomLayout';
 import { defaultTheme } from 'react-admin';
-import { indigo, pink, grey, blueGrey } from '@mui/material/colors';
-import Dashboard from './components/Dashboard';
-import { ContactList } from './components/contacts/ContactList';
-import { CompanyList } from './components/companies/CompanyList';
-import { People, Business, ShoppingCart, Inventory as ProductsIcon } from '@mui/icons-material';
-import { ContactCreate } from './components/contacts/ContactCreate';
-import { ContactEdit } from './components/contacts/ContactEdit';
-import { CompanyCreate } from './components/companies/CompanyCreate';
-import { CompanyEdit } from './components/companies/CompanyEdit';
+import { indigo, pink, grey } from '@mui/material/colors';
+import { People, ShoppingCart, Inventory as ProductsIcon } from '@mui/icons-material';
 import { createDefaultDocuments } from './utils/defaultData';
-import { Route } from 'react-router-dom';
-import { CustomRoute } from './components/CustomRoute';
-import UsersList from './components/Dashboard';
-import Overview from './components/Overview';
 import Orders from './components/Orders';
 import Customers from './components/Customers';
 import Products from './components/Products';
@@ -339,22 +321,6 @@ const createAppwriteDataProvider = () => {
 // Use the custom data provider
 const dataProvider = createAppwriteDataProvider();
 
-// Add error handling to the data provider
-const enhancedDataProvider = {
-    ...dataProvider,
-    getList: async (resource, params) => {
-        try {
-            console.log('Getting list for resource:', resource, 'with params:', params);
-            const result = await dataProvider.getList(resource, params);
-            console.log('List result:', result);
-            return result;
-        } catch (error) {
-            console.error('Error in getList:', error);
-            throw error;
-        }
-    }
-};
-
 // Define a custom theme that extends the default theme
 const theme = {
     ...defaultTheme,
@@ -506,10 +472,9 @@ const App = () => {
             if (authState.checked) return;
 
             try {
-                const session = await account.getSession('current');
+                await account.getSession('current');
                 if (mounted) {
                     const user = await account.get();
-                    // Create default documents after successful authentication with user ID
                     await createDefaultDocuments(databases, user.$id);
                     
                     setAuthState({
